@@ -1191,7 +1191,7 @@ const users = [enoch, annie];
 module.exports = { users };
 ```
 
-> However, this approach becomes impractical with a large dataset. Writing a separate **`get()`** method for each possible request and using the **`find()`** method to search and send data would be tedious and inefficient. To address this issue, we use **Route Parameters.
+> **However, this approach becomes impractical with a large dataset. Writing a separate **`get()`** method for each possible request and using the **`find()`** method to search and send data would be tedious and inefficient. To address this issue, we use `Route Parameters`**.
 
 Route Parameters allow us to handle dynamic values in the URL, eliminating the need for static responses. Instead of hardcoding specific names, Route Parameters let us define a flexible route that can handle different requests. Let’s look at an improved example:
 
