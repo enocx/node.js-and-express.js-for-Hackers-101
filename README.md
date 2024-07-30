@@ -1,7 +1,8 @@
 # Node.js & Express.js for Hackers 101 Notes
 
-**Made with ❤️ by Enoch**
+### MADE WITH  ☕ & ❤️ BY ENOCH
 
+# Introduction
 Welcome to **Node.js & Express.js for Hackers 101 Notes**, a comprehensive guide designed to provide a solid foundation in Node.js and Express.js from a security perspective. This project is geared towards beginners and security enthusiasts who want to dive deeper into backend technologies and understand the nuances of web application security.
 
 ## What You’ll Learn
@@ -28,8 +29,7 @@ Node.js is a JavaScript runtime environment revolutionising server-side developm
 
 # Modules
 
-In a way, modules let you organize your code. You can split parts of your code and store them in different files, then access the code inside them from other files. For example, if you need to store some variables with people's names in them, you can create a new file for that and separate them from the main code file. Doing this reduces the complexity of the code and makes it neat.
-Let's look at an example and see how modules work.
+In a way, modules let you organize your code. You can split parts of your code and store them in different files, then access the code inside them from other files. For example, if you need to store some variables with people's names in them, you can create a new file for that and separate them from the main code file. Doing this reduces the complexity of the code and makes it neat. Let's look at an example and see how modules work.
 
 For example, let's say we have two files, one called `names.js` and another called `app.js`.
 
@@ -41,8 +41,11 @@ const user2 = "Sid";
 const user3 = "Diya";
 
 module.exports = { user1, user3 }; // exporting it to make it available outside
+
 ```
-****
+
+---
+
 <mark style="background: #CACFD9A6;">app.js</mark>
 
 ```jsx
@@ -50,6 +53,7 @@ const names = require("./names"); // requiring it to be able to access the code
 
 console.log(names.user3);
 console.log(names.user2); // trying to access code that was not exported
+
 ```
 
 ```scala
@@ -57,11 +61,14 @@ OUTPUT:
 
 Diya
 undefined
+
 ```
-****
+
+---
+
 As we can see, to make the code visible to other files, we need to use the `exports` method and pass in the code we want to make available, which gives us total control over what to export and what not to. Wherever we need to use the code, we just need to use the `require` function and pass in the path to the file we want to access code from. We are storing the **`require()`** function to a variable to make it easier to access the code inside the **`names.js`** file. When we try to access code that was not exported, we get an **‘undefined’** as you can see in the example code.
 
-> 💡 **Modules work with functions and objects too**
+> 💡 Modules work with functions and objects too
 
 <mark style="background: #CACFD9A6;">function.js</mark>
 
@@ -71,22 +78,29 @@ function sayHello() {
 }
 
 module.exports = sayHello()
+
 ```
-****
+
+---
+
 <mark style="background: #CACFD9A6;">app.js</mark>
 
 ```jsx
 const notMyCode = require('./function');
 
 notMyCode.sayHello();
+
 ```
 
 ```scala
 OUTPUT:
 
 Hello
+
 ```
-****
+
+---
+
 ## Modules with objects
 
 <mark style="background: #CACFD9A6;">hello.js</mark>
@@ -100,16 +114,20 @@ const someRandomObject = {
 }
 
 module.exports = someRandomObject
+
 ```
-****
+
+---
+
 <mark style="background: #CACFD9A6;">app.js</mark>
 
 ```jsx
 const greet = require("./hello");
 
-console.log(greet.name); 
+console.log(greet.name);
 
 greet.saySomething(); // using the function inside the object
+
 ```
 
 ```scala
@@ -117,11 +135,15 @@ OUTPUT:
 
 Hello World!
 GOODBYE WORLD!
+
 ```
-****
+
+---
+
 # Node Built in Modules
 
 There a multiple Built-in Modules in Node but we will just look at some of them.
+
 ## HTTP Module
 
 The HTTP module lets us make HTTP requests. Because it’s a built-in module, we can simply require it and use it. The HTTP module has various methods to handle requests and responses to our Node application. Let’s look at an example:
@@ -140,11 +162,12 @@ const server = http.createServer((req, res) => { // creating a server variable
 })
 
 server.listen(8080); // setting up a port to run the server on
+
 ```
 
->Pay attention to the **`createServer()`** method we used. It takes in two parameters: **REQ** is for request and **RES** for response. We used an if statement to respond with a message if the request is being made to the home directory ("/"). In case the request is being made to another location other than the home directory, we simply respond with a message saying "Access Denied". 
+> Pay attention to the createServer() method we used. It takes in two parameters: REQ is for request and RES for response. We used an if statement to respond with a message if the request is being made to the home directory ("/"). In case the request is being made to another location other than the home directory, we simply respond with a message saying "Access Denied".
 
-****
+---
 
 **A BETTER WAY OF USING RES AND REQ**
 
@@ -160,14 +183,15 @@ const server = http.createServer((req,res) =>{
 });
 
 server.listen(8080);
+
 ```
 
->Notice how we just used the **`end()`** method instead of using the **`write()`** method?
-  This is because we can just end the **HTTP** connection with a message instead of using the **`write()`** method
+> Notice how we just used the end() method instead of using the write() method? This is because we can just end the HTTP connection with a message instead of using the write() method
 
->**💡 We can also pass in responses as HTML code**
+> 💡 We can also pass in responses as HTML code
 
-****
+---
+
 ## FS Module
 
 The FS module short for **FILE SYSTEM**, let’s us read and write to file on the device. There are two ways of using the File System. The first one is the synchronous method and the other way is asynchronous method. Let’s look at how we can use both of them:
@@ -176,8 +200,8 @@ The FS module short for **FILE SYSTEM**, let’s us read and write to file on th
 
 This way of using the File System lets us read and write to files in a synchronous (blocking) fashion. Before we start using the FS module, we need to import it since it’s an inbuilt module.
 
-#### Reading from a file
- 
+### Reading from a file
+
 ```jsx
 const { readFileSync } = require('fs'); // using destructuring
 
@@ -198,10 +222,12 @@ This is the second text
 
 ```
 
->**Notice that we provided `utf-8` as a parameter to the `readFileSync()` function. This is because if we do not provide the file encoding, it would simply return a buffer, which may not be useful for us. Therefore, we need to provide the file encoding type when we read from a file using the FS module.**
+> Notice that we provided utf-8 as a parameter to the readFileSync() function. This is because if we do not provide the file encoding, it would simply return a buffer, which may not be useful for us. Therefore, we need to provide the file encoding type when we read from a file using the FS module.
 
-****
-#### WRITING TO A FILE
+---
+
+### WRITING TO A FILE
+
 ```jsx
 const { writeFileSync } = require('fs'); // using destructuring
 
@@ -213,9 +239,12 @@ writeFileSync('./write.txt', 'Hello');
 FILE CONTENT:
 
 Hello
+
 ```
-****
-#### APPENDING TO A FILE
+
+---
+
+### APPENDING TO A FILE
 
 ```jsx
 // We can also append to an existing file. To do this, we must use a flag.
@@ -232,20 +261,24 @@ console.log('File updated successfully');
 ```scala
 FILE CONTENT:
 
-Hello I'm Enoch 
+Hello I'm Enoch
+
 ```
-****
+
+---
+
 ### FS Module Asynchronous
 
 This way of using the File System lets us read and write to files asynchronously (non-blocking). Using the FS module asynchronously is somewhat different from using it synchronously.
 
 First, the method name is **`readFile()`** instead of **`readFileSync()`**. We pass a callback function into **`readFile()`** with two parameters: “**err**” and “**result**”. The callback function handles any errors that occur when reading the file asynchronously.
 
-> 💡 **We need to provide a callback function to the `readFile()` function because we are dealing with asynchronous code.**
+> 💡 We need to provide a callback function to the readFile() function because we are dealing with asynchronous code.
 
-> ⚠️ **Remember that we can access the callback variables only within the callback itself. If we try to access the variable data from outside the callback function block, we will get an error because we cannot read the variables from outside the callback function block.**
+> ⚠️ Remember that we can access the callback variables only within the callback itself. If we try to access the variable data from outside the callback function block, we will get an error because we cannot read the variables from outside the callback function block.
 
-#### READING FROM A FILE
+### READING FROM A FILE
+
 ```jsx
 
 const { readFile } = require('fs'); // using destructuring
@@ -258,17 +291,22 @@ readFile('./first.txt', 'utf-8', (err, result) => {   // passing a callback
         console.log(result); // must be inside the callback function block
     }
 });
+
 ```
 
->**Notice the callback function we provided to the `readFile()` function. Also notice that we provided the encoding format which is important**
+> Notice the callback function we provided to the readFile() function. Also notice that we provided the encoding format which is important
 
 ```scala
 FILE CONTENT:
 
 This is the first text
+
 ```
-****
+
+---
+
 ### WRITING TO A FILE
+
 ```jsx
 
 const { writeFile } = require('fs');
@@ -287,11 +325,15 @@ writeFile('./first.txt', 'Hello World!', (err) => {
 FILE CONTENT:
 
 This is the first text
+
 ```
-****
-#### We can clean this code up a little by using **`PROMISES`** and **`ASYNC/AWAIT`** Let's use **`PROMISES`:**
+
+---
+
+### We can clean this code up a little by using **`PROMISES`** and **`ASYNC/AWAIT`** Let's use **`PROMISES`:**
 
 **WRITE TO A FILE ASYNCHRONOUSLY AND USING PROMISES**
+
 ```jsx
 const { writeFile } = require('fs');
 
@@ -318,17 +360,20 @@ write
 ```
 
 ```scala
-OUTPUT: 
+OUTPUT:
 
 File written successfully
+
 ```
 
 ```scala
 FILE CONTENT:
 
 BYE
+
 ```
-****
+
+---
 
 **READING A FILE SYNCHRONOUSLY AND USING PROMISES**
 
@@ -357,63 +402,72 @@ read
 ```
 
 ```scala
-OUTPUT: 
+OUTPUT:
 
 HELLO WORLD
+
 ```
 
 ```scala
 FILE CONTENT:
 
 HELLO WORLD
+
 ```
 
 > [!NOTE]
+> 
 > 1. **Writing Files**: The promise for **`writeFile`** is correctly implemented to handle success and error cases.
 > 2. **Reading Files**: The synchronous **`readFileSync`** method is wrapped in a promise to simulate promise-based handling, even though it is inherently blocking. Using **`readFile`** with promises is typically preferred for non-blocking operations.
 
-****
+---
+
 Your content looks well-structured and informative. I've made a few corrections and improvements to enhance clarity and accuracy:
 
 ## Using the Node Package Manager (NPM)
 
 The Node Package Manager (npm) is a vast repository of JavaScript packages created by other developers. It allows us to reuse code in our projects, facilitating faster development. NPM simplifies finding, installing, and managing these packages, making it an essential tool for JavaScript developers. You can access NPM at [**www.npmjs.com**](http://www.npmjs.com/).
 
-> **💡 When you install Node.js, NPM is automatically installed along with it.**
+> 💡 When you install Node.js, NPM is automatically installed along with it.
 
 ### Installing Node Packages
 
 You can install a Node package for two primary purposes: as a local dependency for a specific project or globally to use in any project. Here’s how to do both:
 
-#### As a Local Dependency
+### As a Local Dependency
 
 ```bash
 npm install <packageName>
+
 ```
-#### As a Global Dependency
+
+### As a Global Dependency
 
 ```bash
 npm install -g <packageName>
+
 ```
 
 ### `package.json` File
 
 The `package.json` file is a manifest that contains crucial information about the project you are building. There are two ways to set up the `package.json` file:
 
-#### Manual Approach
+### Manual Approach
 
 This approach requires manually filling in details like the author’s name, project description, etc.
 
 ```bash
 npm init
+
 ```
 
-#### Default Approach
+### Default Approach
 
 This approach automatically fills in default details for the `package.json` file, allowing you to start working on your project immediately.
 
 ```bash
 npm init -y
+
 ```
 
 ## Event Loops
@@ -425,6 +479,7 @@ setTimeout(() => {
     console.log("I should be displayed first");
 }, 0);
 console.log("I should be displayed second");
+
 ```
 
 ```scala
@@ -432,17 +487,19 @@ OUTPUT:
 
 I should be displayed second
 I should be displayed first
+
 ```
 
-> **Notice that even though `setTimeout()` has a delay of 0 milliseconds, the code below it executes first. JavaScript handles asynchronous code using the event loop, regardless of how short the delay is.**
+> Notice that even though setTimeout() has a delay of 0 milliseconds, the code below it executes first. JavaScript handles asynchronous code using the event loop, regardless of how short the delay is.
 
-> **The same concept applies to the `setInterval()` function!**
+> The same concept applies to the setInterval() function!
 
 ```jsx
 setInterval(() => {
     console.log("Hello");
 }, 2000);
 console.log("Goodbye");
+
 ```
 
 ```scala
@@ -454,6 +511,7 @@ Hello
 Hello
 Hello
 ......keeps going // because it's setInterval()
+
 ```
 
 ### Listening for Events in Node.js
@@ -469,17 +527,19 @@ event.on("startCar", () => {
 });
 
 event.emit("startCar"); // triggering the event
+
 ```
 
 ```scala
 OUTPUT:
 
 Vroom Vroom
+
 ```
 
-> **Notice that we create a new instance of `EventEmitter` because the `events` module exports a class with various functionalities to work with events. Similar to the `addEventListener()` method in vanilla JavaScript, you can have multiple listeners for the same event type.**
+> Notice that we create a new instance of EventEmitter because the events module exports a class with various functionalities to work with events. Similar to the addEventListener() method in vanilla JavaScript, you can have multiple listeners for the same event type.
 
-> **You can also pass multiple arguments to the `emit()` method and capture them as parameters in the listener or `on()` method. Here’s an example:**
+> You can also pass multiple arguments to the emit() method and capture them as parameters in the listener or on() method. Here’s an example:
 
 ```jsx
 const EventEmitter = require('events');
@@ -491,6 +551,7 @@ event.on("startCar", (carManufacturer, carVariant) => {
 });
 
 event.emit("startCar", "Lamborghini", "Urus"); // passing multiple arguments
+
 ```
 
 ```scala
@@ -498,6 +559,7 @@ OUTPUT:
 
 Vroom Vroom!
 The car is built by Lamborghini and the variant is Urus
+
 ```
 
 ## Streams Module
@@ -517,7 +579,7 @@ For this example, we’ll use the **`createReadStream()`** function from the **F
 
 **Let’s look at some code examples:**
 
-#### Reading from a File with `createReadStream()`
+### Reading from a File with `createReadStream()`
 
 ```jsx
 const { createReadStream } = require('fs'); // using destructuring
@@ -527,15 +589,16 @@ const stream = createReadStream('./first.txt'); // reading from a file
 stream.on('data', (chunk) => { // listening to events
     console.log(chunk.toString()); // convert buffer to string for display
 });
+
 ```
 
-> **In the above code, we use the `createReadStream()` function to read data from a file sequentially. The `on()` method listens for the 'data' event, and the data is displayed using `console.log()`. The `chunk` is a Buffer by default, so we convert it to a string using `chunk.toString()` for readable output.**
+> In the above code, we use the createReadStream() function to read data from a file sequentially. The on() method listens for the 'data' event, and the data is displayed using console.log(). The chunk is a Buffer by default, so we convert it to a string using chunk.toString() for readable output.
 
-#### Buffer Size and `highWaterMark`
+### Buffer Size and `highWaterMark`
 
 A buffer temporarily stores data being transferred or processed in a stream. The default buffer size is **64 KB**. You can control the buffer size using the **`highWaterMark`** option in the `createReadStream()` function.
 
-##### Custom Buffer Size Example
+### Custom Buffer Size Example
 
 ```jsx
 const { createReadStream } = require('fs');
@@ -545,6 +608,7 @@ const stream = createReadStream('./first.txt', { highWaterMark: 8000 }); // 8 KB
 stream.on('data', (chunk) => {
     console.log(chunk.toString()); // convert buffer to string for display
 });
+
 ```
 
 ```scala
@@ -556,11 +620,12 @@ Hello World 2
 Hello World 3
 Hello World 4
 ...
+
 ```
 
-> **The file being read was `16KB`, so with a custom buffer size of `8KB`, the output is split into two buffers. Each buffer is logged separately.**
+> The file being read was 16KB, so with a custom buffer size of 8KB, the output is split into two buffers. Each buffer is logged separately.
 
-> **You can also specify the file encoding format when reading the file by including the `encoding` option in the object passed to `createReadStream()`. For example:**
+> You can also specify the file encoding format when reading the file by including the encoding option in the object passed to createReadStream(). For example:
 
 ```jsx
 const { createReadStream } = require('fs');
@@ -570,11 +635,12 @@ const stream = createReadStream('./first.txt', { encoding: 'utf8' }); // specify
 stream.on('data', (chunk) => {
     console.log(chunk); // already a string due to encoding
 });
+
 ```
 
 ---
 
-> **By setting the `encoding` option, the chunks received from the stream are automatically strings, making it easier to work with textual data directly.**
+> By setting the encoding option, the chunks received from the stream are automatically strings, making it easier to work with textual data directly.
 
 ```jsx
 const { createReadStream } = require('fs');
@@ -587,9 +653,10 @@ const stream = createReadStream('./first.txt', {
 stream.on('data', (chunk) => {
     console.log(chunk); // Output as string
 });
+
 ```
 
-> **The `encoding` option ensures that the chunks received from the stream are automatically strings, making it easier to handle textual data directly.**
+> The encoding option ensures that the chunks received from the stream are automatically strings, making it easier to handle textual data directly.
 
 ### Handling Errors
 
@@ -611,6 +678,7 @@ read.on('error', (err) => { // Handle errors
     console.log("An error has occurred. Details below:");
     console.log(err);
 });
+
 ```
 
 ```scala
@@ -623,9 +691,10 @@ An error has occurred. Details below:
   syscall: 'open',
   path: './first.txt'
 }
+
 ```
 
-> **In this example, an error occurs because the file path is incorrect. The `error` event handler catches this and logs the error details.**
+> In this example, an error occurs because the file path is incorrect. The error event handler catches this and logs the error details.
 
 ### Sending Data in Chunks
 
@@ -654,6 +723,7 @@ const server = http.createServer((req, res) => {
 server.listen(3000, () => {
     console.log('Server listening on port 3000');
 });
+
 ```
 
 **Example 2: Sending Data in Chunks**
@@ -666,17 +736,17 @@ const fs = require('fs');
 
 const server = http.createServer((req, res) => {
     const readStream = fs.createReadStream('./largeFile.txt');
-    
+
     res.writeHead(200, { 'Content-Type': 'text/plain' });
-    
+
     readStream.on('data', (chunk) => {
         res.write(chunk); // Write chunks of data
     });
-    
+
     readStream.on('end', () => {
         res.end(); // End response when all data is sent
     });
-    
+
     readStream.on('error', (err) => {
         res.writeHead(500);
         res.end("Error reading file");
@@ -686,11 +756,13 @@ const server = http.createServer((req, res) => {
 server.listen(3000, () => {
     console.log('Server listening on port 3000');
 });
+
 ```
 
-> **Sending data in chunks is the recommended approach for large files. It prevents excessive memory usage by processing data incrementally, making the server more efficient and responsive.**
+> Sending data in chunks is the recommended approach for large files. It prevents excessive memory usage by processing data incrementally, making the server more efficient and responsive.
 
 ---
+
 ### Traditional Way of Sending Data from the Server All at Once
 
 ```jsx
@@ -711,9 +783,10 @@ http.createServer((req, res) => {
 }).listen(8080, () => {
     console.log("Server Started on port 8080...");
 });
+
 ```
 
-> **In the above code, the entire content of the file is read into memory and then sent in a single response. This method is simple but may not be efficient for very large files due to potential high memory usage.**
+> In the above code, the entire content of the file is read into memory and then sent in a single response. This method is simple but may not be efficient for very large files due to potential high memory usage.
 
 ### Using the Streams Module to Send Data in Chunks
 
@@ -723,11 +796,11 @@ const fs = require('fs');
 
 http.createServer((req, res) => {
     const readStream = fs.createReadStream('./first.txt', 'utf-8');
-    
+
     readStream.on('open', () => {
         readStream.pipe(res); // Send the data in chunks
     });
-    
+
     readStream.on('error', (err) => {
         res.writeHead(500, { 'Content-Type': 'text/plain' });
         res.end("Internal Server Error");
@@ -735,14 +808,17 @@ http.createServer((req, res) => {
 }).listen(8080, () => {
     console.log("Server Started on port 8080...");
 });
+
 ```
 
-> **In this example, using the Streams module allows data to be sent in chunks rather than all at once. The `pipe()` method is used to handle the flow of data from the file to the response object. This approach is more efficient for large files as it minimises memory usage by processing data incrementally.**
+> In this example, using the Streams module allows data to be sent in chunks rather than all at once. The pipe() method is used to handle the flow of data from the file to the response object. This approach is more efficient for large files as it minimises memory usage by processing data incrementally.
 
 ---
+
 ## HTTP Headers
 
 HTTP headers provide additional information about the response or request. They can specify metadata such as the content type, status codes, and more. By setting custom HTTP headers, you can control how clients interpret your responses.
+
 ### Setting Custom HTTP Headers
 
 To set custom HTTP headers, you use the **`writeHead()`** method on the response object. Here’s an example of setting a custom **`Content-Type`** header:
@@ -760,11 +836,12 @@ const serverPort = 8080;
 server.listen(serverPort, () => {
     console.log(`Server started on port ${serverPort}`);
 });
+
 ```
 
-> **Note:** The **`writeHead()`** method is used to set the HTTP status code and headers for the response. In this case, **`200`** indicates a successful request, and **`Content-Type: text/html`** specifies that the response is HTML.
+> Note: The writeHead() method is used to set the HTTP status code and headers for the response. In this case, 200 indicates a successful request, and Content-Type: text/html specifies that the response is HTML.
 
-> **💡 In frameworks like Express.js, many of these headers are handled automatically. However, when using the built-in `http` module, you need to set them manually.**
+> 💡 In frameworks like Express.js, many of these headers are handled automatically. However, when using the built-in http module, you need to set them manually.
 
 ### Putting It All Together
 
@@ -824,19 +901,22 @@ const serverPort = 8080;
 server.listen(serverPort, () => {
     console.log(`Server started on port ${serverPort}`);
 });
+
 ```
 
-> **Explanation:**
+> Explanation:
+> 
 > - **Error Handling**: The `resourceUnavailable()` function handles server errors by sending a `503 Service Unavailable` response with an appropriate message.
 > - **Successful Responses**: The `resourceAvailable()` function sends a `200 OK` response along with the requested file content.
 > - **Routing**: Based on the URL, the server reads the corresponding HTML file and sends it back to the client. If the URL does not match any known route, a `404 Not Found` response is sent.
 
 ---
+
 ## Express.js
 
 Express.js is a minimal and flexible Node.js framework that simplifies the creation of web servers. It builds on the core functionality provided by Node.js, offering a more straightforward and efficient approach to handling HTTP requests and responses.
 
-> ⚠️ **Before using Express.js, you need to install it. Use the command: `npm install express`.**
+> ⚠️ Before using Express.js, you need to install it. Use the command: npm install express.
 
 ## Reasons to Use Express.js
 
@@ -849,7 +929,7 @@ Express.js is a minimal and flexible Node.js framework that simplifies the creat
 - **Community:** Large, active community for support and resources.
 - **Documentation:** Comprehensive and well-written official documentation.
 
-> 💡 **Express.js eliminates the need for the Node.js HTTP module for server creation, providing built-in methods to handle HTTP protocols and responses.**
+> 💡 Express.js eliminates the need for the Node.js HTTP module for server creation, providing built-in methods to handle HTTP protocols and responses.
 
 ### Creating a Simple HTTP Server with Express
 
@@ -875,6 +955,7 @@ const port = 8000;
 app.listen(port, () => {
     console.log(`Server started on port ${port}`);
 });
+
 ```
 
 **Key Points:**
@@ -911,6 +992,7 @@ const port = 8080;
 app.listen(port, () => {
     console.log(`Server started on port ${port}`);
 });
+
 ```
 
 **Key Points:**
@@ -924,7 +1006,8 @@ app.listen(port, () => {
 - **Middleware:** Express supports middleware functions that can modify the request or response objects or end the request-response cycle. Middleware can be used for logging, authentication, and more.
 - **Routing:** Express allows for more complex routing configurations and supports route parameters and query strings, which can be used to build dynamic routes.
 
-****
+---
+
 # Certainly! Here's the refined content with technical and grammatical corrections, while maintaining the original language, tone, and style:
 
 ---
@@ -933,7 +1016,7 @@ app.listen(port, () => {
 
 It’s common to have resources like CSS, HTML, and images in our web application. Since these are static and do not change, we can add them to a folder and serve them all at once. This approach is more efficient compared to handling each file individually. Using a dedicated folder for static files keeps the codebase cleaner and more organized.
 
-> 💡 **To serve static files with Express, use the `app.use()` method.**
+> 💡 To serve static files with Express, use the app.use() method.
 
 ## Advantages of Storing Static Resources in a Dedicated Folder
 
@@ -943,7 +1026,7 @@ It’s common to have resources like CSS, HTML, and images in our web applicatio
 4. **Simplification:** Managing static files separately simplifies routing and handling of dynamic content, such as server-side generated pages or API responses.
 5. **Scalability:** As your web application grows, managing static files in a separate folder helps maintain scalability and efficiency.
 
-> ⚠️ **It’s crucial to place the `app.use()` method above all other route-specific methods, such as `app.get()`, `app.post()`, etc. If you place `app.use()` after these methods, it will never be reached.**
+> ⚠️ It’s crucial to place the app.use() method above all other route-specific methods, such as app.get(), app.post(), etc. If you place app.use() after these methods, it will never be reached.
 
 ### The Bad Approach
 
@@ -963,6 +1046,7 @@ It’s common to have resources like CSS, HTML, and images in our web applicatio
     <img src="cat.png" alt="cat image">
 </body>
 </html>
+
 ```
 
 **Bad Approach of Sending Resources Individually**
@@ -993,15 +1077,17 @@ const port = 8080;
 app.listen(port, () => {
     console.log(`Server started on port ${port}`);
 });
+
 ```
 
-> **In this approach, each static file is served individually. While this may work for small projects, it becomes inefficient as the number of static files grows.**
+> In this approach, each static file is served individually. While this may work for small projects, it becomes inefficient as the number of static files grows.
 
 ### Efficient Approach: Serving Resources Using `express.static()`
 
 By using **`express.static()`**, you can serve all static files from a directory with minimal code.
 
 **Directory Structure:**
+
 ```
 /project
   /static
@@ -1009,6 +1095,7 @@ By using **`express.static()`**, you can serve all static files from a directory
     /cat.png
   index.html
   server.js
+
 ```
 
 **Efficient Approach of Serving Static Files**
@@ -1033,18 +1120,19 @@ const port = 8080;
 app.listen(port, () => {
     console.log(`Server started on port ${port}`);
 });
+
 ```
 
-> **The key here is the `express.static()` middleware, which serves all files in the specified directory. This method handles file paths and status codes, making the code much simpler.**
+> The key here is the express.static() middleware, which serves all files in the specified directory. This method handles file paths and status codes, making the code much simpler.
 
->⚠️ **Ensure that your main HTML file is named `index.html` so that it is automatically served at the root URL (`/`). This prevents the URL from including `index.html`.**
+> ⚠️ Ensure that your main HTML file is named index.html so that it is automatically served at the root URL (/). This prevents the URL from including index.html.
 
 ### Conclusion
 
-Using `express.static()` is the preferred method for serving static files in Express.js. It simplifies file management, improves performance, and keeps your codebase organized.
-Here's the refined content on JSON basics with technical and grammatical corrections, while keeping the original tone and language:
+Using `express.static()` is the preferred method for serving static files in Express.js. It simplifies file management, improves performance, and keeps your codebase organized. Here's the refined content on JSON basics with technical and grammatical corrections, while keeping the original tone and language:
 
 ---
+
 ### JSON Basics
 
 JSON stands for **JavaScript Object Notation**. It is a text format that is completely language-independent, commonly used for transmitting data in web applications. For example, JSON can be used to send data from a server to a client to be displayed on a web page, or vice versa. With Express, you can easily respond to HTTP requests with JSON data. Here’s an example:
@@ -1074,18 +1162,20 @@ const port = 8080;
 app.listen(port, () => {
   console.log(`Server started on port ${port}...`);
 });
+
 ```
 
-> **In the example above, we have two JSON objects with some values, enclosed in an array. The `res.json()` method is used to send the JSON data as the response.**
+> In the example above, we have two JSON objects with some values, enclosed in an array. The res.json() method is used to send the JSON data as the response.
 
 ```scala
 OUTPUT:
 
 [{"name":"Enoch","age":21,"sex":"Male","working":true},
  {"name":"Annie","age":25,"sex":"Female","working":false}]
+
 ```
 
-****
+---
 
 ## Responding with Minimal Data from JSON Objects
 
@@ -1093,7 +1183,7 @@ Even if you have a lot of data values in your JSON objects, you can choose to re
 
 <mark style="background: #CACFD9A6;">`data.js`</mark>
 
-```javascript
+```jsx
 const enoch = {
   name: 'Enoch',
   age: 21,
@@ -1111,9 +1201,10 @@ const annie = {
 const users = [enoch, annie]; // Storing the objects in an array
 
 module.exports = { users }; // Exporting the "users" array
+
 ```
 
-****
+---
 
 <mark style="background: #CACFD9A6;">`app.js`</mark>
 
@@ -1133,6 +1224,7 @@ const port = 8080;
 app.listen(port, () => {
   console.log(`Server started on port ${port}`);
 });
+
 ```
 
 ```scala
@@ -1140,9 +1232,10 @@ OUTPUT:
 
 [{"name":"Enoch","sex":"Male","working":true},
  {"name":"Annie","sex":"Female","working":false}]
+
 ```
 
-> **In this example, only the `name`, `sex`, and `working` fields are included in the response. The `map()` function is used to filter out the unwanted fields, providing a cleaner and more efficient response.**
+> In this example, only the name, sex, and working fields are included in the response. The map() function is used to filter out the unwanted fields, providing a cleaner and more efficient response.
 
 ---
 
@@ -1168,11 +1261,12 @@ const port = 8080;
 app.listen(port, () => {
   console.log(`Server started on port ${port}...`);
 });
+
 ```
 
 <mark style="background: #CACFD9A6;">data.js</mark>
 
-```javascript
+```jsx
 const enoch = {
   name: 'Enoch',
   age: 21,
@@ -1189,9 +1283,10 @@ const annie = {
 
 const users = [enoch, annie];
 module.exports = { users };
+
 ```
 
-> **However, this approach becomes impractical with a large dataset. Writing a separate **`get()`** method for each possible request and using the **`find()`** method to search and send data would be tedious and inefficient. To address this issue, we use `Route Parameters`**.
+> However, this approach becomes impractical with a large dataset. Writing a separate get() method for each possible request and using the find() method to search and send data would be tedious and inefficient. To address this issue, we use Route Parameters.
 
 Route Parameters allow us to handle dynamic values in the URL, eliminating the need for static responses. Instead of hardcoding specific names, Route Parameters let us define a flexible route that can handle different requests. Let’s look at an improved example:
 
@@ -1222,13 +1317,14 @@ const port = 8080;
 app.listen(port, () => {
   console.log(`Server started on port ${port}...`);
 });
+
 ```
 
-> **Notice how we implement route parameters. We use a colon (`:`) to define the parameter in the endpoint. This approach allows us to handle dynamic requests efficiently.**
+> Notice how we implement route parameters. We use a colon (:) to define the parameter in the endpoint. This approach allows us to handle dynamic requests efficiently.
 
 <mark style="background: #CACFD9A6;">data.js</mark>
 
-```javascript
+```jsx
 const users = [
   {
     name: 'enoch',
@@ -1251,20 +1347,24 @@ const users = [
 ];
 
 module.exports = { users };
+
 ```
 
 ---
+
 ## Here is a Breakdown of the Code
 
 ### Importing and Destructuring Data
 
 - We import an object from a file named `data` using `require`.
 - We then destructure the imported object and assign the value of the key "users" to a variable named `users`.
+
 ### **Route Parameter and Request Handling**
 
 - We use the `app.get` method to define a route that handles GET requests to the URL path `/:name`.
 - This route utilizes a route parameter named `name`.
 - Inside the route handler, we destructure the value of the `name` parameter from the `req.params` object.
+
 ### **Finding Data and Sending Response**
 
 - We use the `find` method on the `users` array to locate a user whose name matches the `name` parameter value.
@@ -1274,16 +1374,17 @@ module.exports = { users };
 - Finally, we use the **`res.json()`** method to send the `data` variable as a JSON response to the client.
 
 ---
+
 ## Query Parameters
 
 Query parameters are key-value pairs appended to the URL after a question mark (`?`). They provide a way to send additional information to the server along with the URL path. The server can then access these parameters and use them to modify its behavior.
 
-> ⚠️ **It's crucial to define a specific route for the query parameters you want to handle. If you don't, Express.js will route the request to the first matching route regardless of the presence or value of the query parameter.**
+> ⚠️ It's crucial to define a specific route for the query parameters you want to handle. If you don't, Express.js will route the request to the first matching route regardless of the presence or value of the query parameter.
 
 Let’s understand this with an example:
 
 ```jsx
-const express = require('express'); 
+const express = require('express');
 const app = express();
 const { users } = require('./data');
 
@@ -1308,13 +1409,14 @@ app.get("/:route", (req, res) => {
   }
 });
 
-const port = 8080; 
+const port = 8080;
 app.listen(port, () => {
   console.log(`Server started on port ${port}...`);
 });
+
 ```
 
-##### HTTP REQUEST: <http://localhost:8080/route?query=20>
+### HTTP REQUEST: [http://localhost:8080/route?query=20](http://localhost:8080/route?query=20)
 
 ```scala
 OUTPUT:
@@ -1322,13 +1424,14 @@ OUTPUT:
 [{"name":"enoch","age":22,"sex":"Male","working":false},
 {"name":"annie","age":34,"sex":"Female","working":true},
 {"name":"sonny","age":44,"sex":"Male","working":true}]
+
 ```
 
-> **Since we set the query value to 20, the response includes all objects where the age is >= 20.**
+> Since we set the query value to 20, the response includes all objects where the age is >= 20.
 
 <mark style="background: #CACFD9A6;">data.js</mark>
 
-```javascript
+```jsx
 const users = [
   {
     name: 'enoch',
@@ -1363,11 +1466,13 @@ const users = [
 ];
 
 module.exports = { users };
+
 ```
 
-> **💡 You can include as many query parameters as needed. Just ensure they are separated by the AND symbol (`&`). Example: [`http://localhost:8080/route?query=20&anotherQuery=randomStuff`](<http://localhost:8080/route?query=20&anotherQuery=randomStuff>)**
+> 💡 You can include as many query parameters as needed. Just ensure they are separated by the AND symbol (&). Example: [http://localhost:8080/route?query=20&anotherQuery=randomStuff](http://localhost:8080/route?query=20&anotherQuery=randomStuff)
 
-****
+---
+
 # Middleware
 
 Imagine we have a web server with two routes: `/home` and `/about`. We have written a lot of logic for the `/home` route, and we want to apply the same logic to the `/about` route as well.
@@ -1414,15 +1519,17 @@ const port = 8080;
 app.listen(port, () => {
   console.log(`Server started on port ${port}...`);
 });
+
 ```
 
 ```scala
 OUTPUT:
 
 GET /home 2023
+
 ```
 
-> **In this example, we repeat the same logic across multiple routes (`/about` and `/contact`), which makes the code redundant and inefficient.**
+> In this example, we repeat the same logic across multiple routes (/about and /contact), which makes the code redundant and inefficient.
 
 **CODE USING MIDDLEWARE**
 
@@ -1454,6 +1561,7 @@ const port = 8080;
 app.listen(port, () => {
   console.log(`Server started on port ${port}...`);
 });
+
 ```
 
 ```scala
@@ -1468,15 +1576,17 @@ BROWSER PAGE: About page
 CONSOLE OUTPUT OF <http://localhost:8080/contact>
 CONSOLE: GET /contact 2023
 BROWSER PAGE: Contact page
+
 ```
 
-> **In the above code example, we defined a function called `logic` to handle the repeated logic. We then apply this function to any route requiring it by passing it as middleware.**
+> In the above code example, we defined a function called logic to handle the repeated logic. We then apply this function to any route requiring it by passing it as middleware.
 
-> The `next` parameter is crucial here. After executing the `logic` function, the `next` function allows Express to proceed to the next middleware or route handler. Without it, the request would not continue to the route handler. Calling `next()` at the end of the `logic` function signals to Express that the middleware has completed its task and the route handler can now be executed. This approach keeps the code clean and avoids repetition.
+> The next parameter is crucial here. After executing the logic function, the next function allows Express to proceed to the next middleware or route handler. Without it, the request would not continue to the route handler. Calling next() at the end of the logic function signals to Express that the middleware has completed its task and the route handler can now be executed. This approach keeps the code clean and avoids repetition.
 
 **Okay, our code looks pretty neat and tidy. But let’s clean it up even more. We can do two things to make our code more concise and organized. Let’s explore those next.**
 
 ---
+
 ## Moving the Logic Function to a Separate File
 
 It’s always a good practice to separate core functions from the main code. By using `module.exports`, we can make the function available for import in other files using the `require()` function.
@@ -1505,27 +1615,29 @@ const port = 8080;
 app.listen(port, () => {
   console.log(`Server started on port ${port}...`);
 });
+
 ```
 
 <mark style="background: #CACFD9A6;">logic.js</mark>
 
 ```jsx
 const logic = (req, res, next) => {
-  const method = req.method; 
-  const url = req.url; 
-  const year = new Date().getFullYear(); 
+  const method = req.method;
+  const url = req.url;
+  const year = new Date().getFullYear();
   console.log(method, url, year);
   next();
 };
 
 module.exports = logic; // Exporting the logic function
+
 ```
 
 ## Using the `app.use()` Method
 
 While applying middleware functions to specific routes is useful, it can become cumbersome with multiple middlewares. To streamline this, we can use the `app.use()` method, which allows us to specify middleware functions that apply to multiple routes or even all routes.
 
-> 💡 **Placement of `app.use()` is crucial.** If `app.use()` is placed above other route definitions, it will be applied to all requests handled by those routes. 
+> 💡 Placement of app.use() is crucial. If app.use() is placed above other route definitions, it will be applied to all requests handled by those routes.
 
 You can also limit the scope of middleware by specifying a base path. For example, `app.use('/api', logic)` will apply the `logic` middleware only to routes that start with `/api`. This makes the code cleaner and easier to manage. Let’s see an example:
 
@@ -1554,15 +1666,17 @@ const port = 8080;
 app.listen(port, () => {
   console.log(`Server started on port ${port}...`);
 });
+
 ```
 
-> **Notice how we call the `logic` function using `app.use()` at the top of the file.** This setup applies the middleware to all routes that start with `/home`. This approach simplifies the code and ensures that the middleware logic is consistently applied to all relevant routes without repeating the function call.
+> Notice how we call the logic function using app.use() at the top of the file. This setup applies the middleware to all routes that start with /home. This approach simplifies the code and ensures that the middleware logic is consistently applied to all relevant routes without repeating the function call.
 
 ---
 
 **By separating the logic into a different file and using `app.use()`, we not only keep the code organized but also make it more maintainable and efficient.**
 
 ---
+
 # Intro to Other Common HTTP Requests Using Postman
 
 ## POST Request
@@ -1575,7 +1689,7 @@ Since we can't perform **`POST`** requests directly through the browser, we'll u
 const express = require('express');
 const app = express();
 
-app.use(express.urlencoded({ extended: false })); 
+app.use(express.urlencoded({ extended: false }));
 
 const users = [
   { name: 'Enoch', age: '22' },
@@ -1595,11 +1709,12 @@ const port = 8080;
 app.listen(port, () => {
   console.log(`Server started on port ${port}...`);
 });
+
 ```
 
-> In this code, we have an array called **`users`** with some initial values. The **`app.post()`** method defines the route **`/home`**. When data is sent via the **`POST`** method, it is stored in the `data` variable and then pushed to the **`users`** array. We log the updated **`users`** array to the console and send a response saying "**User created!**". The **`req.body`** method is used to access the data sent through the **`POST`** request.
+> In this code, we have an array called users with some initial values. The app.post() method defines the route /home. When data is sent via the POST method, it is stored in the data variable and then pushed to the users array. We log the updated users array to the console and send a response saying "User created!". The req.body method is used to access the data sent through the POST request.
 
-> Note the highlighted code: when sending **`POST`** requests, we must encode the data properly. This is achieved by using **`express.urlencoded({ extended: false })`**, which parses URL-encoded form data. Without this middleware, the server would receive an empty object.
+> Note the highlighted code: when sending POST requests, we must encode the data properly. This is achieved by using express.urlencoded({ extended: false }), which parses URL-encoded form data. Without this middleware, the server would receive an empty object.
 
 Now that we have covered the basics of handling **`POST`** requests, let’s explore how to send data using **`POST`** requests with Postman.
 
@@ -1609,10 +1724,10 @@ As shown in the screenshot, we have sent a **`POST`** request to our **`/home`**
 
 Next, check your terminal to confirm that the **`users`** array is updated. The data you sent through the **`POST`** request should be visible in the terminal output, reflecting the newly added user.
 
-**Voila!**
-![[Pasted image 20240728193112.png]]
+**Voila!** ![[Pasted image 20240728193112.png]]
 
-****
+---
+
 ## PUT REQUEST
 
 **The PUT request allows us to update or create a resource on the server. Let's look at an example:**
@@ -1654,28 +1769,31 @@ const port = 8081;
 app.listen(port, () => {
     console.log(`Server started on port ${port}...`);
 });
+
 ```
 
 ---
+
 ### Explanation
 
 - **Setup**: We import `express` and create an instance of the Express application. We use `express.urlencoded({ extended: false })` to parse URL-encoded data in the request body.
 - **Database**: An array named `database` simulates a data store with user information.
 - **PUT Route**: We define a route `PUT /api/people/:id` where `:id` is a route parameter representing the user ID.
-  - **Extract Parameters**: We extract the `id` from the URL and `name` from the request body.
-  - **Find User**: We use the `find` method to locate a user with the matching ID.
-  - **Update User**: If a user is found, we update their `userName` with the new value and respond with the updated database.
-  - **Handle Not Found**: If no user is found, we respond with a 404 status and an error message.
+    - **Extract Parameters**: We extract the `id` from the URL and `name` from the request body.
+    - **Find User**: We use the `find` method to locate a user with the matching ID.
+    - **Update User**: If a user is found, we update their `userName` with the new value and respond with the updated database.
+    - **Handle Not Found**: If no user is found, we respond with a 404 status and an error message.
 
 This approach ensures that you can update user information dynamically based on the provided ID and request body.
 
-#### Now let’s use postman to send a PUT request to update the name in the database with the `userId` of 4
+### Now let’s use postman to send a PUT request to update the name in the database with the `userId` of 4
 
 ![[Pasted image 20240728193207.png]]
 
-> **As you can see in the screenshot, we have successfully update the data that was in the database array. The previous `userName` of `userId`: 4 was `jerry`”**
+> As you can see in the screenshot, we have successfully update the data that was in the database array. The previous userName of userId: 4 was jerry”
 
 ---
+
 ## DELETE REQUEST
 
 **The DELETE request is used to remove a resource from the server. Let’s look at an example:**
@@ -1716,6 +1834,7 @@ const port = 8081;
 app.listen(port, () => {
     console.log(`Server started on port ${port}...`);
 });
+
 ```
 
 ### Explanation
@@ -1729,23 +1848,25 @@ app.listen(port, () => {
 - **Handle Not Found**: If no user is found (index is -1), we respond with a 404 status and an error message.
 
 ### Key Points
+
 - **`splice(index, 1)`**: The **`splice`** method modifies the array in place. The first argument is the starting index for removal, and the second argument is the number of elements to remove. In this case, it removes one user from the array at the specified index.
 - **Error Handling**: It's important to handle cases where the user with the specified ID does not exist to ensure that the client receives appropriate feedback.
 
 This method provides a clean and effective way to manage and delete resources from your server.
 
-#### Let’s look the results from **POSTMAN**
+### Let’s look the results from **POSTMAN**
 
 ![[Pasted image 20240728193354.png]]
 
-> **The array value in the 0th position was `{userId: 0, userName: 'enoch', userAge: '22' }` but since we gave `0` in the request parameter, this value from removed from the array**
+> The array value in the 0th position was {userId: 0, userName: 'enoch', userAge: '22' } but since we gave 0 in the request parameter, this value from removed from the array
 
-****
+---
+
 # Routes
 
 Routes help us organize our code so that our main JavaScript file is not cluttered and messy. As our routes grow, it becomes difficult to maintain them if they are all in one file. To solve this, we can use routes to separate them into different files, making it much easier to maintain. Let’s take a look at an example.
 
-> Suppose we have two routes for a fruit store: apples and mangoes. We can create a folder named `routes` and inside that, create two files, one for the apple route and the other for the mango route. Let’s look at the code inside each file:
+> Suppose we have two routes for a fruit store: apples and mangoes. We can create a folder named routes and inside that, create two files, one for the apple route and the other for the mango route. Let’s look at the code inside each file:
 
 **`apple.js`**
 
@@ -1770,6 +1891,7 @@ router.delete("/", (req, res) => {
 });
 
 module.exports = router;
+
 ```
 
 **`mango.js`**
@@ -1795,6 +1917,7 @@ router.delete("/", (req, res) => {
 });
 
 module.exports = router;
+
 ```
 
 **`index.js`**
@@ -1805,7 +1928,7 @@ const app = express();
 const appleRoute = require('./routes/apple'); // Importing the apple file
 const mangoRoute = require('./routes/mango'); // Importing the mango file
 
-app.use('/apple', appleRoute); 
+app.use('/apple', appleRoute);
 app.use('/mango', mangoRoute);
 
 const port = 8080;
@@ -1813,15 +1936,17 @@ const port = 8080;
 app.listen(port, () => {
     console.log(`Server started on port ${port}...`);
 });
+
 ```
 
-> Notice the highlighted code, we use the **`app.use()`** method and pass in the route names and the value that holds the route location of those route names. Notice in the **`mango.js`** and **`apple.js`** files, we have not provided the route paths because we are already providing the paths while importing the file. Also, note that we are not using the usual **`app.get()`** method; instead, we are using **`router.get()`** method as we are using the route concept.
+> Notice the highlighted code, we use the app.use() method and pass in the route names and the value that holds the route location of those route names. Notice in the mango.js and apple.js files, we have not provided the route paths because we are already providing the paths while importing the file. Also, note that we are not using the usual app.get() method; instead, we are using router.get() method as we are using the route concept.
 
 ```jsx
 OUTPUT FROM VISITING:
 <http://localhost:8080/mango>
 
 Here is your mango
+
 ```
 
 ```jsx
@@ -1829,8 +1954,9 @@ OUTPUT FROM VISITING:
 <http://localhost:8080/apple>
 
 Here is your apple
+
 ```
 
 By organizing your routes this way, you keep your main application file clean and make your codebase more manageable and maintainable as your application grows.
 
-****
+---
