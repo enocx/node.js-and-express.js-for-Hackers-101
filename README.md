@@ -1718,13 +1718,17 @@ app.listen(port, () => {
 
 Now that we have covered the basics of handling **`POST`** requests, let’s explore how to send data using **`POST`** requests with Postman.
 
-![[Pasted image 20240728193040.png]]
+![Pasted image 20240728193040](https://github.com/user-attachments/assets/30aa171a-74f6-4aef-8d76-77eeb36455a3)
+
 
 As shown in the screenshot, we have sent a **`POST`** request to our **`/home`** route, selecting **URL-encoded** format for the data. We've included two key-value pairs: `name` and `age`. If you’ve configured everything correctly and clicked "Send," the **`POST`** request should be processed successfully, and you should see the message "User Created!" in the response.
 
 Next, check your terminal to confirm that the **`users`** array is updated. The data you sent through the **`POST`** request should be visible in the terminal output, reflecting the newly added user.
 
-**Voila!** ![[Pasted image 20240728193112.png]]
+**Voila!** 
+
+![Pasted image 20240728193112](https://github.com/user-attachments/assets/43fd13ab-5017-4a77-9fa7-f0649fed6690)
+
 
 ---
 
@@ -1788,7 +1792,8 @@ This approach ensures that you can update user information dynamically based on 
 
 ### Now let’s use postman to send a PUT request to update the name in the database with the `userId` of 4
 
-![[Pasted image 20240728193207.png]]
+![Pasted image 20240728193207](https://github.com/user-attachments/assets/777d9e85-392a-4be5-9154-4d8c7c0bc061)
+
 
 > As you can see in the screenshot, we have successfully update the data that was in the database array. The previous userName of userId: 4 was jerry”
 
@@ -1856,7 +1861,8 @@ This method provides a clean and effective way to manage and delete resources fr
 
 ### Let’s look the results from **POSTMAN**
 
-![[Pasted image 20240728193354.png]]
+![Pasted image 20240728193354](https://github.com/user-attachments/assets/0dae6498-ad19-4ce4-8e17-559810635279)
+
 
 > The array value in the 0th position was {userId: 0, userName: 'enoch', userAge: '22' } but since we gave 0 in the request parameter, this value from removed from the array
 
