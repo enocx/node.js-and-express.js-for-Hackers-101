@@ -1,4 +1,4 @@
-# Node.js & Express.js for Hackers 101 Notes
+# Node.js & Express.js for Hackers 101
 
 ### MADE WITH  ☕ & ❤️ BY ENOCH
 
