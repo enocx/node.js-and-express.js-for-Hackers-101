@@ -1122,11 +1122,7 @@ app.listen(port, () => {
 
 > ⚠️ Ensure that your main HTML file is named index.html so that it is automatically served at the root URL (/). This prevents the URL from including index.html.
 
-### Conclusion
-
-Using `express.static()` is the preferred method for serving static files in Express.js. It simplifies file management, improves performance, and keeps your codebase organized. Here's the refined content on JSON basics with technical and grammatical corrections, while keeping the original tone and language:
-
----
+Using `express.static()` is the preferred method for serving static files in Express.js. It simplifies file management, improves performance, and keeps your codebase organized.
 
 ### JSON Basics
 
